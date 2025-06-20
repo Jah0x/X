@@ -1,0 +1,35 @@
+ datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+ }
+
+ generator client {
+  provider = "prisma-client-js"
+ }
+
+model User {
+  id            Int            @id @default(autoincrement())
+  telegramId    BigInt         @unique
+  email         String         @unique
+  uid           String         @unique
+  createdAt     DateTime       @default(now())
+  subscriptions Subscription[]
+  uidPool       UidPool?
+}
+
+ model Subscription {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  plan      String
+  startDate DateTime @default(now())
+  endDate   DateTime
+  isActive  Boolean  @default(true)
+  user      User     @relation(fields: [userId], references: [id])
+ }
+
+ model UidPool {
+  uid    String  @id
+  userId Int?    @unique
+  user   User?   @relation(fields: [userId], references: [id])
+  inUse  Boolean @default(false)
+ }
