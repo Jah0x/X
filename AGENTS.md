@@ -77,7 +77,10 @@ After Phase 1, add GitHub Actions:
 * `frontend-test.yml` → install, lint, build
 
 ## 8. Out of scope (Phase 1)
-* Payment, subscription renewal  
-* Kubernetes manifests  
-* Production Docker  
+* Payment, subscription renewal
+* Kubernetes manifests
+* Production Docker
 * Internationalisation
+
+## 9. Dev log
+Keep a running log of development actions with UTC timestamps in `docs/DEVLOG.md`.
